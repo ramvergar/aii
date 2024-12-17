@@ -1,20 +1,19 @@
 from django.db import models
 
-class Anime(models.Model):
-    anime_id = models.IntegerField(primary_key=True)  
-    name = models.CharField(max_length=255)  
-    genre = models.CharField(max_length=500) 
-    type = models.CharField(max_length=50) 
-    episodes = models.CharField(max_length=255) 
+class Pelicula(models.Model):
+    idPelicula = models.AutoField(primary_key=True)
+    titulo = models.CharField(max_length=255)
+    director = models.CharField(max_length=255)
+    idIMDB = models.CharField(max_length=255)
+    generos = models.CharField(max_length=255)
 
-    def _str_(self):
-        return self.name
+    def __str__(self):
+        return self.titulo
 
+class Puntuacion(models.Model):
+    idUsuario = models.IntegerField()
+    idPelicula = models.ForeignKey(Pelicula, on_delete=models.CASCADE)
+    puntuacion = models.IntegerField()
 
-class Rating(models.Model):
-    user_id = models.IntegerField()  
-    anime = models.ForeignKey(Anime, on_delete=models.CASCADE, default=1)  
-    rating = models.IntegerField()  
-
-    def _str_(self):
-        return f"Usuario {self.user_id} - {self.anime.name} - {self.rating}"
+    def __str__(self):
+        return f'{self.idUsuario} - {self.idPelicula} - {self.puntuacion}'

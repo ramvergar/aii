@@ -198,3 +198,11 @@ def ingresar(request):
                      
     return render(request, 'ingresar.html', {'formulario':formulario, 'STATIC_URL':settings.STATIC_URL})
 
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('populate/', views.populateDatabase, name='populateDatabase'),
+    path('loadRS/', views.loadRS, name='loadRS'),
+    # otras rutas...
+]

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Recomendaciones</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'populateDatabase' %}">Cargar Base de Datos</a></li>
+            <li><a href="{% url 'loadRS' %}">Cargar Recsys</a></li>
+            <!-- otras opciones del menú -->
+        </ul>
+    </nav>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
