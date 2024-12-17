@@ -1,5 +1,5 @@
-from main.models import Anime, Rating
 from django.contrib import admin
+from .models import Movie, Rating
 
-admin.site.register(Anime)
+admin.site.register(Movie)
 admin.site.register(Rating)

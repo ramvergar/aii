@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie List</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Movie List</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'recommendations' %}">Recommendations</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Available Movies</h2>
+        <ul>
+            {% for movie in movies %}
+                <li>
+                    <h3>{{ movie.Título }}</h3>
+                    <p>Director: {{ movie.Director }}</p>
+                    <p>Genres: {{ movie.Géneros }}</p>
+                    <p>IMDB ID: {{ movie.idIMDB }}</p>
+                </li>
+            {% empty %}
+                <li>No movies available.</li>
+            {% endfor %}
+        </ul>
+    </main>
+    <footer>
+        <p>&copy; {{ current_year }} Movie Recommendation App</p>
+    </footer>
+</body>
+</html>

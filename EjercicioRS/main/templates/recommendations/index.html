@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation App</title>
+    <link rel="stylesheet" href="{% static 'recommendations/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Movie Recommendation App</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'movie_list' %}">Movies</a></li>
+                <li><a href="{% url 'recommendations' %}">Recommendations</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Discover Your Next Favorite Movie</h2>
+            <p>Explore our collection of movies and get personalized recommendations based on your preferences.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Movie Recommendation App</p>
+    </footer>
+</body>
+</html>
