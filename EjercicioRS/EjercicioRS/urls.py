@@ -1,13 +1,10 @@
-from django.contrib import admin
 from django.urls import path
 from main import views
 
 urlpatterns = [
-    path('index.html/', views.index),
-    path('confirmar_carga/',views.cargar_base_datos),
-    path('', views.index),
-    path('animes_por_genero/', views.animes_por_genero, name='animes_por_genero'),
-    path('mejores_animes/', views.mejores_animes, name='mejores_animes'),
-    path('mejores_animes/', views.mejores_animes, name='mejores_animes'),
-    path('recomendar_animes_usuario/', views.recomendar_animes_usuario, name='recomendar_animes_usuario'),
-    ]
+    path('', views.index, name='index'),
+    path('cargar_base_datos/', views.cargar_base_datos, name='cargar_base_datos'),
+    path('cargar_recsys/', views.cargar_recsys, name='cargar_recsys'),
+    path('peliculas_por_genero/', views.peliculas_por_genero, name='peliculas_por_genero'),
+    path('peliculas_mas_puntuadas/', views.peliculas_mas_puntuadas, name='peliculas_mas_puntuadas')
+]
