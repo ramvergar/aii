@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carga Exitosa</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Confirmar Carga de Datos</h1>
+        <p>¿Está seguro de que desea cargar la base de datos? Esta acción eliminará todos los registros actuales.</p>
+
+        <!-- Tabla de Animes -->
+        <h2>Registros Actuales en Anime</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Géneros</th>
+                <th>Formato</th>
+                <th>Episodios</th>
+            </tr>
+            {% for anime in animes %}
+            <tr>
+                <td>{{ anime.anime_id }}</td>
+                <td>{{ anime.name }}</td>
+                <td>{{ anime.genre }}</td>
+                <td>{{ anime.type }}</td>
+                <td>{{ anime.episodes }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No hay registros en la tabla Anime.</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <!-- Tabla de Puntuaciones -->
+        <h2>Registros Actuales en Puntuaciones</h2>
+        <table>
+            <tr>
+                <th>ID Usuario</th>
+                <th>ID Anime</th>
+                <th>Puntuación</th>
+            </tr>
+            {% for puntuacion in puntuaciones %}
+            <tr>
+                <td>{{ puntuacion.id_usuario }}</td>
+                <td>{{ puntuacion.anime.anime_id }} - {{ puntuacion.anime.name }}</td>
+                <td>{{ puntuacion.puntuacion }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">No hay registros en la tabla Puntuaciones.</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <!-- Formulario de confirmación -->
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit">Sí, cargar la base de datos</button>
+        </form>
+    </div>
+</body>
+</html>

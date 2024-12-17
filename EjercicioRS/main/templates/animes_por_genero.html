@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animes por Género</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        select, button {
+            padding: 10px;
+            font-size: 1em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Animes por Género</h1>
+
+    <!-- Formulario para seleccionar género -->
+    <form method="POST">
+        {% csrf_token %}
+        <label for="genero">Selecciona un género:</label>
+        <select name="genero" id="genero">
+            {% for genero in generos %}
+                <option value="{{ genero }}" {% if genero == genero_seleccionado %}selected{% endif %}>
+                    {{ genero }}
+                </option>
+            {% endfor %}
+        </select>
+        <button type="submit">Buscar</button>
+    </form>
+
+    <!-- Resultados agrupados por formato de emisión -->
+    {% if animes_filtrados %}
+        <h2>Resultados para "{{ genero_seleccionado }}"</h2>
+        <table>
+            <tr>
+                <th>Formato de Emisión</th>
+                <th>Total de Animes</th>
+            </tr>
+            {% for anime in animes_filtrados %}
+            <tr>
+                <td>{{ anime.type }}</td>
+                <td>{{ anime.total }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% elif genero_seleccionado %}
+        <p>No se encontraron animes para el género seleccionado.</p>
+    {% endif %}
+</body>
+</html>
